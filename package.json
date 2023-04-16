@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite --port 3000 --open",
-    "build": "tsc && vite build",
+    "build": "CI=false && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
