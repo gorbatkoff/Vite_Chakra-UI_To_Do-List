@@ -1,0 +1,10 @@
+.Content {
+  display: grid;
+  grid-template-columns: 55% 40%;
+  margin-top: 1em;
+  grid-gap: 3em;
+
+  h2{
+    margin-bottom: 1em;
+  }
+}
