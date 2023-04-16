@@ -1,4 +1,4 @@
-import {ChangeEvent, memo, useState} from "react";
+import {ChangeEvent, KeyboardEvent, memo, useState} from "react";
 import styles from "./NewTask.module.scss";
 import {Button, Input} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,6 +22,18 @@ export const NewTask = memo(({className}: NewTaskProps) => {
 
     const handleClick = () => {
 
+        if (taskTitle.length === 0 || taskTitle === "" || taskTitle === " ") {
+            setIsInvalid(true)
+            return;
+        }
+
+        if (taskTitle.trim().length === 0) {
+            setIsInvalid(true)
+            return;
+        }
+
+        setIsInvalid(false)
+
         const newTask: Task = {
             id: v4(),
             title: taskTitle,
@@ -32,6 +44,10 @@ export const NewTask = memo(({className}: NewTaskProps) => {
         return setTaskTitle("");
     }
 
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === "Enter") handleClick()
+    }
+
     return (
         <>
             <div className={styles.NewTask}>
@@ -40,6 +56,7 @@ export const NewTask = memo(({className}: NewTaskProps) => {
                     value={taskTitle}
                     onChange={e => handleChange(e)}
                     placeholder="New task ..."
+                    onKeyDown={e => handleKeyDown(e)}
                 />
                 <Button
                     colorScheme="purple"
