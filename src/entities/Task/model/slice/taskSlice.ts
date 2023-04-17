@@ -21,8 +21,17 @@ export const taskSlice = createSlice({
             const filteredTasks = state.filter(task => task.id !== action.payload.id);
             localStorage.setItem('tasks', JSON.stringify(filteredTasks))
             return filteredTasks;
+        },
+        toggleTask: (state: TasksSchema, action: PayloadAction<Task>) => {
+            const filteredTasks = state.map((task) => {
+                if (task.id === action.payload.id) {
+                    return { ...task, isCompleted: !task.isCompleted  };
+                }
+                return task;
+            });
+            localStorage.setItem('tasks', JSON.stringify(filteredTasks))
+            return filteredTasks;
         }
-
     },
 })
 
