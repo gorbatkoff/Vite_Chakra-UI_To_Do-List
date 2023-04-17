@@ -52,6 +52,7 @@ export const NewTask = memo(({className}: NewTaskProps) => {
         <>
             <div className={styles.NewTask}>
                 <Input
+                    borderColor={"#805AD5"}
                     isInvalid={isInvalid}
                     value={taskTitle}
                     onChange={e => handleChange(e)}
