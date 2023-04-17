@@ -1,7 +1,7 @@
 import {memo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getTasks} from "/src/entities/Task/model/selectors/getTasks";
-import {Button, Checkbox, Heading} from "@chakra-ui/react";
+import {Box, Button, Checkbox, Heading} from "@chakra-ui/react";
 import {taskSlice} from "/src/entities/Task/model/slice/taskSlice";
 import {Task} from "/src/entities/Task/model/types/task";
 
@@ -34,13 +34,13 @@ export const Tasks = memo((props: TasksProps) => {
         <div>
             {tasks.map((task) => {
                 return (
-                    <div className={styles.Task} key={task.id}>
+                    <Box className={styles.Task} key={task.id} bg="#805AD5" color={"#fff"}>
                         <Checkbox
                             size={"lg"}
                         />
                         <span>{task.title}</span>
                         <Button onClick={() => deleteTask(task)} color="red">X</Button>
-                    </div>
+                    </Box>
                 )
             })}
         </div>
