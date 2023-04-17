@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
-.App {
+.light {
+    min-height: 100vh;
+}
+
+.night {
     min-height: 100vh;
 }
