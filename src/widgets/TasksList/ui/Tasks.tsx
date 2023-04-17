@@ -1,20 +1,27 @@
 import {memo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getTasks} from "/src/entities/Task/model/selectors/getTasks";
 import {Box, Button, Checkbox, Heading} from "@chakra-ui/react";
 import {taskSlice} from "/src/entities/Task/model/slice/taskSlice";
 import {Task} from "/src/entities/Task/model/types/task";
 
 import styles from './TasksList.module.scss'
+import {getCompletedTasks} from "/src/entities/Task/model/selectors/getCompletedTasks";
+import {getUncompletedTasks} from "/src/entities/Task/model/selectors/getUncompletedTasks";
 
 interface TasksProps {
     className?: string
+    typeOfFilter: "uncompleted" | "completed";
 }
 
 export const Tasks = memo((props: TasksProps) => {
 
+    const {typeOfFilter} = props;
     const dispatch = useDispatch();
-    let tasks = useSelector(getTasks)
+    let tasks = useSelector(getUncompletedTasks)
+
+    if (typeOfFilter === "completed"){
+        tasks = useSelector(getCompletedTasks)
+    }
 
     if (tasks.length === 0) {
         return (
@@ -30,13 +37,19 @@ export const Tasks = memo((props: TasksProps) => {
         dispatch(taskSlice.actions.deleteTask(task))
     }
 
+    const toggleTask = (task: Task) => {
+        dispatch(taskSlice.actions.toggleTask(task))
+    }
+
     return (
         <div>
-            {tasks.map((task) => {
+            {tasks.map((task: Task) => {
                 return (
                     <Box className={styles.Task} key={task.id} bg="#805AD5" color={"#fff"}>
                         <Checkbox
+                            isChecked={task.isCompleted}
                             size={"lg"}
+                            onChange={() => toggleTask(task)}
                         />
                         <span>{task.title}</span>
                         <Button onClick={() => deleteTask(task)} color="red">X</Button>
