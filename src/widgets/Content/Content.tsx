@@ -1,6 +1,6 @@
 import {ChangeEvent, memo, useEffect, useState} from "react";
 import styles from "./Content.module.scss";
-import {Heading, Textarea, useTheme} from "@chakra-ui/react";
+import {Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Textarea, useTheme} from "@chakra-ui/react";
 import {NewTask} from "/src/features";
 import {Tasks} from "/src/widgets/TasksList/ui/Tasks";
 
@@ -18,8 +18,6 @@ export const Content = memo((props: ContentProps) => {
         setNotes(e.target.value);
     };
 
-    const theme = useTheme();
-
     return (
         <div className={styles.Content}>
             <div>
@@ -27,7 +25,21 @@ export const Content = memo((props: ContentProps) => {
 
                 <NewTask/>
 
-                <Tasks />
+                <Tabs isFitted variant='enclosed'>
+                    <TabList mb='1em'>
+                        <Tab>Невыполненные</Tab>
+                        <Tab>Выполненные</Tab>
+                    </TabList>
+                    <TabPanels>
+                        <TabPanel>
+                            <Tasks  typeOfFilter="uncompleted"/>
+                        </TabPanel>
+                        <TabPanel>
+                            <Tasks  typeOfFilter="completed"/>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
+
             </div>
             <div>
                 <Heading size='lg'>лист</Heading>
