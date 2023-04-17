@@ -12,7 +12,7 @@ export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
         <div>
             <FormControl display='flex' alignItems='center'>
                 <FormLabel htmlFor='theme-switcher' mb='0'>
-                    <Heading size='md'>
+                    <Heading size='sm'>
                         {colorMode === "dark" ? "Включить свет" : "Выключить свет"}
                     </Heading>
                 </FormLabel>
