@@ -1,5 +1,11 @@
-.Header{
+.Header {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 568px) {
+  .Header {
+    align-items: end;
+  }
 }

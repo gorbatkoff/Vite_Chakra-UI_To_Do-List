@@ -8,3 +8,13 @@
     margin-bottom: 1em;
   }
 }
+
+@media (max-width: 568px) {
+  .Content {
+    display: block;
+  }
+
+  .tabList{
+    margin-top: 1em;
+  }
+}
