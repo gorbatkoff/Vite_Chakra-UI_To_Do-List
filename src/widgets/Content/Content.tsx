@@ -25,7 +25,7 @@ export const Content = memo((props: ContentProps) => {
 
                 <NewTask/>
 
-                <Tabs isFitted variant='enclosed'>
+                <Tabs isFitted variant='enclosed' className={styles.tabList}>
                     <TabList mb='1em'>
                         <Tab>Невыполненные</Tab>
                         <Tab>Выполненные</Tab>
