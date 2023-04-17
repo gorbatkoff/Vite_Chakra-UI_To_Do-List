@@ -1,6 +1,6 @@
 import {ChangeEvent, memo, useEffect, useState} from "react";
 import styles from "./Content.module.scss";
-import {Heading, Textarea} from "@chakra-ui/react";
+import {Heading, Textarea, useTheme} from "@chakra-ui/react";
 import {NewTask} from "/src/features";
 import {Tasks} from "/src/widgets/TasksList/ui/Tasks";
 
@@ -18,6 +18,8 @@ export const Content = memo((props: ContentProps) => {
         setNotes(e.target.value);
     };
 
+    const theme = useTheme();
+
     return (
         <div className={styles.Content}>
             <div>
@@ -31,9 +33,12 @@ export const Content = memo((props: ContentProps) => {
                 <Heading size='lg'>лист</Heading>
 
                 <Textarea
+                    borderColor={"#805AD5"}
                     value={notes as string}
                     onChange={handleChange}
                     height={"70vh"}
+                    p={6}
+                    placeholder={"Write new text here ..."}
                 />
             </div>
         </div>
